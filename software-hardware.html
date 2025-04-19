@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Software & Hardware</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('show');
+    const expanded = mobileMenu.classList.contains('show');
+    hamburger.setAttribute('aria-expanded', expanded);
+    });
+
+    const filter = document.getElementById('categoryFilter');
+    const cards = document.querySelectorAll('.product-card');
+
+    filter.addEventListener('change', function () {
+      const category = this.value;
+      cards.forEach(card => {
+        card.style.display = (category === 'all' || card.dataset.category === category)
+          ? 'block' : 'none';
+      });
+    });
+  });
+</script>
+  
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-container">
+      <div class="logo">
+        <a href="lokaspasialnusantara.com"><img src="assets/Logo_LSN_white.png" alt="Logo LSN" height="40"></a>
+      </div>
+      <nav class="nav">
+        <a href="index.html" class="nav-link">Atlas</a>
+        <a href="#" class="nav-link">|</a>
+        <a href="#" class="nav-link">Science & Methods</a>
+        <a href="#" class="nav-link">|</a>
+        <a href="#" class="nav-link">Resources</a>
+        <a href="#" class="nav-link">|</a>
+        <a href="#" class="nav-link">Software & Hardware</a>
+        <button class="nav-button"><i class="fa-solid fa-lock"></i></i> Login</button>
+      </nav>
+      <div class="hamburger" id="hamburger">☰</div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html" class="nav-link">Atlas</a>
+    <a href="#" class="nav-link">Science & Methods</a>
+    <a href="#" class="nav-link">Resources</a>
+    <a href="software-hardware.html" class="nav-link">Software & Hardware</a>
+    <button class="nav-button"><i class="fa-solid fa-lock"></i></i> Login</button>
+  </div>
+
+<!-- Hero Section -->
+<section class="hero">
+    <h1>Software & Hardware Terbaik untuk Kebutuhan Anda</h1>
+    <p>Kami menawarkan solusi perangkat lunak dan perangkat keras yang
+       dirancang khusus untuk kebutuhan pemetaan, akuntansi, lingkungan, 
+       dan permodelan hidrodinamika. Dalam bidang pemetaan, kami menyediakan software GIS
+       (Geographic Information System) yang memungkinkan Anda untuk mengumpulkan, menganalisis, 
+        dan memvisualisasikan data geografis dengan akurasi tinggi.</p>
+  </section>
+  
+  <!-- Produk Section -->
+  <section class="product-section container">
+
+    <!-- Filter Dropdown -->
+    <div class="filter-bar">
+      <label for="categoryFilter">Filter Kategori:</label>
+      <select id="categoryFilter">
+        <option value="all">Semua Kategori</option>
+        <option value="gis">Software</option>
+        <option value="perikanan">Hardware</option>
+      </select>
+    </div>
+  
+  </section><div class="product-grid">
+    <div class="product-card">
+      <img src="assets/lorem.png" alt="Produk 1">
+      <h3>Lorem Ipsum</h3>
+      <p>Lorem ipsum dolor sit amet</p>
+      <button class="product-button">Beli Sekarang</button>
+    </div>
+
+    <div class="product-card">
+      <img src="assets/lorem.png" alt="Produk 2">
+      <h3>Lorem Ipsum</h3>
+      <p>padding: 24px; dolor sit amet</p>
+      <button class="product-button">Beli Sekarang</button>
+    </div>
+
+    <div class="product-card">
+      <img src="assets/lorem.png" alt="Produk 2">
+      <h3>Lorem Ipsum</h3>
+      <p>Lorem ipsum dolor sit amet</p>
+      <button class="product-button">Beli Sekarang</button>
+    </div>
+
+    <div class="product-card">
+      <img src="assets/lorem.png" alt="Produk 2">
+      <h3>Lorem Ipsum</h3>
+      <p>Lorem ipsum dolor sit amet</p>
+      <button class="product-button">Beli Sekarang</button>
+    </div>
+  
+  <div class="product-card">
+    <img src="assets/lorem.png" alt="Produk 1">
+    <h3>Lorem Ipsum</h3>
+    <p>Lorem ipsum dolor sit amet</p>
+    <button class="product-button">Beli Sekarang</button>
+  </div>
+
+  <div class="product-card">
+    <img src="assets/lorem.png" alt="Produk 2">
+    <h3>Lorem Ipsum</h3>
+    <p>Lorem ipsum dolor sit amet</p>
+    <button class="product-button">Beli Sekarang</button>
+  </div>
+
+  <div class="product-card">
+    <img src="assets/lorem.png" alt="Produk 2">
+    <h3>Lorem Ipsum</h3>
+    <p>Lorem ipsum dolor sit amet</p>
+    <button class="product-button">Beli Sekarang</button>
+  </div>
+
+  <div class="product-card">
+    <img src="assets/lorem.png" alt="Produk 2">
+    <h3>Lorem Ipsum</h3>
+    <p>Lorem ipsum dolor sit amet</p>
+    <button class="product-button">Beli Sekarang</button>
+  </div> 
+</div> 
+</section>
+
+<footer class="simple-footer">
+    <p>All rights reserved &copy; 2025 <B>Loka Spasial Nusantara</B></p>
+  </div>
+</footer>
+
+</body>
+</html>

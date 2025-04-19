@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Genesis Data</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-container">
+      <div class="logo">
+        <a href="lokaspasialnusantara.com"><img src="assets/Logo_LSN_white.png" alt="Logo LSN" height="40"></a></div>
+      <nav class="nav">
+        <a href="#" class="nav-link">Atlas</a>
+        <a href="#" class="nav-link">|</a>
+        <a href="#" class="nav-link">Science & Methods</a>
+        <a href="#" class="nav-link">|</a>
+        <a href="#" class="nav-link">Resources</a>
+        <a href="#" class="nav-link">|</a>
+        <a href="software-hardware.html" class="nav-link">Software & Hardware</a>
+        <button class="nav-button"><i class="fa-solid fa-lock"></i></i> Login</button>
+      </nav>
+      <div class="hamburger" id="hamburger">☰</div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html" class="nav-link">Atlas</a>
+    <a href="#" class="nav-link">Science & Methods</a>
+    <a href="#" class="nav-link">Resources</a>
+    <a href="software-hardware.html" class="nav-link">Software & Hardware</a>
+    <button class="nav-button"><i class="fa-solid fa-lock"></i></i> Login</button>
+  </div>
+
+  <!-- Peta -->
+  <main>
+    <div id="map"></div>
+    <div id="coordinates">Lat: -2.5, Long: 118.0</div>
+  </main>
+
+  <!-- Script Leaflet & Map Init -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('show');
+    const expanded = mobileMenu.classList.contains('show');
+    hamburger.setAttribute('aria-expanded', expanded);
+    });
+
+    const map = L.map('map', { zoomControl: false }).setView([-2.5, 118.0], 5);
+
+    const light = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution: 'Data licensed ©Loka Spasial Nusantara',
+      subdomains: 'abcd',
+      maxZoom: 19
+    }).addTo(map);
+
+    const dark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: 'Data licensed ©Loka Spasial Nusantara',
+      subdomains: 'abcd',
+      maxZoom: 19
+    });
+
+    const esriSat = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+      attribution: 'Tiles © Esri | Data licensed ©Loka Spasial Nusantara',
+    });
+
+    L.control.layers({ "Terang": light, "Gelap": dark, "Satelit (Esri)": esriSat }).addTo(map);
+
+    L.Control.geocoder({ defaultMarkGeocode: true, placeholder: "Cari Lokasi..." }).addTo(map).setPosition('topleft');
+    L.control.scale({ position: 'bottomleft', imperial: false, maxWidth: 200 }).addTo(map);
+    L.control.zoom({ position: 'bottomleft' }).addTo(map);
+
+    map.on('mousemove', function (e) {
+      const lat = e.latlng.lat.toFixed(6);
+      const lng = e.latlng.lng.toFixed(6);
+      const coordBox = document.getElementById('coordinates');
+      coordBox.innerText = `Lat: ${lat}, Long: ${lng}`;
+      coordBox.style.backgroundColor = '#e0f7fa';
+      setTimeout(() => {
+        coordBox.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+      }, 100);
+    });
+  </script>
+
+</body>
+</html>
